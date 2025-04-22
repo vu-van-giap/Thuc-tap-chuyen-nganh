@@ -1,15 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { RouterProvider } from 'react-router-dom'
-import router from './routers/router.jsx'
-import { store } from './redux/store.js'
-import 'sweetalert2/dist/sweetalert2.js'
-import { Provider } from 'react-redux'
+// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { store } from './redux/store';
+import router from './router';
 
-createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <RouterProvider router={router}/>
-  </Provider>,
-)
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <Provider store={store}>
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
+    </Provider>
+);
